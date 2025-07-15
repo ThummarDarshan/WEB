@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Feedback - CHARUSAT Portal</title>
+
+</head>
+
+<body>
+  <header>
+    <h1>Feedback Form</h1>
+  </header>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    |<a href="result.html">Results</a>
+    |<a href="feedback.html">Feedback</a>
+  </nav>
+  <main>
+    <h2>Share your thoughts</h2>
+    <form>
+      <label for="course">Course/Subject</label>
+      <input type="text" id="course" placeholder="e.g., Web Development" required>
+      <br><br>
+      <label for="rating">Rating</label>
+      <select id="rating" required>
+        <option>Excellent</option>
+        <option>Good</option>
+        <option>Average</option>
+        <option>Poor</option>
+      </select>
+      <br><br>
+      <label for="comments">Comments</label>
+      <textarea id="comments" rows="4" placeholder="Your feedback..." required></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </main>
+  <footer>
+    <p>&copy; 2023 CHARUSAT Portal. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
