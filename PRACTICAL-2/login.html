@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login - CHARUSAT Portal</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #e6f2ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: white;
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(137, 47, 47, 0.1);
+      width: 300px;
+    }
+
+    h2 {
+      color: #003366;
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    a:hover {
+      color: #9c6882;
+      text-decoration: underline;
+    }
+
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2f87de;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .forgot {
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class="login-box">
+
+    <h2>Login</h2>
+    <form>
+
+
+      <input type="text" placeholder="Username" name="full name" required>
+      <input type="password" placeholder="Password" required>
+      <!-- <input type="submit" value="SIGN IN"> -->
+      <button>Login</button>
+
+      <div class="forgot"><a href="#">Forgot Password?</a></div>
+      <br>
+
+      <button><a href="dashboard.html" style="color: rgb(249, 249, 249); ">Dashboard</a></button>
+
+  </div>
+  </form>
+</body>
+
+</html>

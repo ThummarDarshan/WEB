@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Results - CHARUSAT Portal</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background-color: #eef7ff;
+    }
+
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      padding: 1em;
+      text-align: center;
+      width: 100%;
+      bottom: 0;
+    }
+
+    nav {
+      background-color: #0059b3;
+      padding: 1em;
+      text-align: center;
+    }
+
+    a:hover {
+      color: #9c6882;
+      text-decoration: underline;
+    }
+
+    button:hover {
+      background-color: #9c6882;
+      color: rgb(210, 56, 56);
+      cursor: pointer;
+    }
+
+    form :hover {
+
+      color: rgb(55, 19, 147);
+      cursor: pointer;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 2em;
+      max-width: 400px;
+      margin: 20px auto;
+      background: white;
+      text-align: lesft;
+      border-radius: 10px;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #003366;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Academic Results</h1>
+  </header>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    |<a href="profile.html">Profile</a>
+    |<a href="result.html">Results</a>
+  </nav>
+  <main>
+    <!-- <table>
+      <tr>
+        <th>Subject</th>
+        <th>Marks</th>
+        <th>Grade</th>
+      </tr>
+      <tr>
+        <td>Mathematics</td>
+        <td>85</td>
+        <td>A</td>
+      </tr>
+      <tr>
+        <td>Physics</td>
+        <td>78</td>
+        <td>B+</td>
+      </tr>
+      <tr>
+        <td>Programming</td>
+        <td>92</td>
+        <td>A+</td>
+      </tr>
+    </table> -->
+
+    <form>
+
+      <p> INSTITUTE <b>:-</b>
+
+        <select>
+          <div style="margin-right: 200PX; text-align: center ; ">
+            <option value="SELECT">SELECT</option>
+            <option value="CSPIT">CSPIT</option>
+            <option value=" DEPSTAR">DEPSTAR</option>
+            <option value="CMPICA">CMPICA</option>
+            <option value="PDPIAS">PDPIAS</option>
+            <option value="IIIM">IIIM</option>
+            <option value="RPCP">RPCP</option>
+            <!-- <input style="margin: 10px; border-radius: 50px; text-align: center; " type="text" placeholder="Institute"
+            name="Institute" required> -->
+          </div>
+        </select>
+
+      </p>
+      
+      <p> DEPATMENT <b>:-</b>
+        <select>
+          <option value="SELECT">SELECT</option>
+          <option value="Computer Engineering">Computer Engineering</option>
+          <option value="Information Technology">Information Technology</option>
+          <option value="Electronics and Communication">Electronics and Communication</option>
+          <option value="Electrical Engineering">Electrical Engineering</option>
+          <option value="Civil Engineering">Civil Engineering</option>
+          <option value="Mechanical Engineering">Mechanical Engineering</option>
+        </select>
+      </p>
+   
+      <p> SEMESTER <b>:-</b>
+        <select>
+          <option value="SELECT">SELECT</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+      </p>
+     
+      <p> EXAMINATION <b>:-</b>
+        <select>
+          <option value="SELECT">SELECT</option>
+          <option value="Regular">Regular</option>
+          <option value="Supplementary">Supplementary</option>
+        </select>
+      </p>
+   
+      <p> ID Number <b>:-</b>
+        <input style="margin: 10px; border-radius: 50px; text-align: center; " type="text" placeholder="ID Number"
+          name="ID Number" required>
+      </p>
+
+      <center>
+        <button style="margin: 10px; border-radius: 5px; text-align: center;  height: 30px;  width: 150px;"
+          type="submit">Submit</button>
+      </center>
+
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 CHARUSAT Portal. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
