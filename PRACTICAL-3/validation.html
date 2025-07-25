@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical-3: Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        
+        .error {
+            border-color: #ff4444 !important;
+            background-color: #ffe6e6 !important;
+        }
+        
+        .error-message {
+            color: #ff4444;
+            font-size: 14px;
+            margin-top: 5px;
+            display: block;
+            min-height: 20px;
+        }
+        
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .checkbox-item input,
+        .radio-item input {
+            width: auto;
+            margin: 0;
+        }
+        
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .reset-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .reset-btn:hover {
+            background-color: #da190b;
+        }
+        
+        .success-data {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f5e8;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .success-data h2 {
+            color: #2e7d2e;
+            margin-top: 0;
+        }
+        
+        .data-item {
+            margin: 10px 0;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .data-label {
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Registration Form - Practical 3</h1>
+        
+        <form id="registrationForm" novalidate>
+            
+            <div class="form-group">
+                <label for="fullname">Student Full Name *</label>
+                <input type="text" id="fullname" name="fullname" required>
+                <span class="error-message" id="fullname-error"></span>
+            </div>
+            
+            
+            <div class="form-group">
+                <label for="studentid">Student ID *</label>
+                <input type="text" id="studentid" name="studentid" required>
+                <span class="error-message" id="studentid-error"></span>
+            </div>
+           
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error-message" id="email-error"></span>
+            </div>
+            
+           
+            <div class="form-group">
+                <label for="username">Username *</label>
+                <input type="text" id="username" name="username" required>
+                <span class="error-message" id="username-error"></span>
+            </div>
+            
+          
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" name="password" required>
+                <span class="error-message" id="password-error"></span>
+            </div>
+            
+          
+            <div class="form-group">
+                <label for="confirmpassword">Confirm Password *</label>
+                <input type="password" id="confirmpassword" name="confirmpassword" required>
+                <span class="error-message" id="confirmpassword-error"></span>
+            </div>
+            
+           
+         
+            
+           
+            <button type="submit" class="submit-btn">Register</button>
+            <button type="reset" class="reset-btn">Reset Form</button>
+        </form>
+        
+       
+        <div id="successData" class="success-data">
+            <h2>Registration Successful!</h2>
+            <div id="displayData"></div>
+        </div>
+    </div>
+
+    <script>
+        
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        const studentIdRegex = /^[a-zA-Z0-9]+$/;
+        const usernameRegex = /^[a-zA-Z0-9]{5,15}$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        const phoneRegex = /^[0-9]{10}$/;
+        
+        // Get form elements
+        const form = document.getElementById('registrationForm');
+        const successData = document.getElementById('successData');
+        
+        // Add event listeners for all form fields
+        const fields = ['fullname', 'studentid', 'email', 'username', 'password', 'confirmpassword', 'phone', 'dob', 'age', 'course', 'address'];
+        
+        fields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            field.addEventListener('blur', () => validateField(fieldId));
+            field.addEventListener('input', () => clearError(fieldId));
+        });
+        
+        
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (validateForm()) {
+                displaySuccessData();
+            }
+        });
+        
+       
+        
+        function validateField(fieldName) {
+            const field = document.getElementById(fieldName) || document.querySelector(`input[name="${fieldName}"]`);
+            const errorElement = document.getElementById(`${fieldName}-error`);
+            let isValid = true;
+            let errorMessage = '';
+            
+            switch(fieldName) {
+                case 'fullname':
+                    const nameValue = field.value.trim();
+                    if (!nameValue) {
+                        errorMessage = 'Full Name is required.';
+                        isValid = false;
+                    } else if (!nameRegex.test(nameValue)) {
+                        errorMessage = 'Full Name should contain only letters and spaces.';
+                        isValid = false;
+                    }
+                    break;
+                    
+                case 'studentid':
+                    const studentIdValue = field.value.trim();
+                    if (!studentIdValue) {
+                        errorMessage = 'Student ID is required.';
+                        isValid = false;
+                    } else if (!studentIdRegex.test(studentIdValue)) {
+                        errorMessage = 'Student ID should contain only alphanumeric characters.';
+                        isValid = false;
+                    }
+                    break;
+                    
+                case 'email':
+                    const emailValue = field.value.trim();
+                    if (!emailValue) {
+                        errorMessage = 'Email is required.';
+                        isValid = false;
+                    } else if (!field.validity.valid) {
+                        errorMessage = 'Please enter a valid email address.';
+                        isValid = false;
+                    }
+                    break;
+                    
+                case 'username':
+                    const usernameValue = field.value.trim();
+                    if (!usernameValue) {
+                        errorMessage = 'Username is required.';
+                        isValid = false;
+                    } else if (!usernameRegex.test(usernameValue)) {
+                        errorMessage = 'Username must be 5-15 characters and alphanumeric only.';
+                        isValid = false;
+                    }
+                    break;
+                    
+                case 'password':
+                    const passwordValue = field.value;
+                    if (!passwordValue) {
+                        errorMessage = 'Password is required.';
+                        isValid = false;
+                    } else if (!passwordRegex.test(passwordValue)) {
+                        errorMessage = 'Password must be at least 8 characters with letters, digits, and one special character.';
+                        isValid = false;
+                    }
+                    break;
+                    
+                case 'confirmpassword':
+                    const confirmPasswordValue = field.value;
+                    const passwordField = document.getElementById('password');
+                    if (!confirmPasswordValue) {
+                        errorMessage = 'Confirm Password is required.';
+                        isValid = false;
+                    } else if (confirmPasswordValue !== passwordField.value) {
+                        errorMessage = 'Passwords do not match.';
+                        isValid = false;
+                    }
+                    break;
+                    
+                case 'phone':
+                    const phoneValue = field.value.trim();
+                    if (!phoneValue) {
+                        errorMessage = 'Phone Number is required.';
+                        isValid = false;
+                    } else if (!phoneRegex.test(phoneValue)) {
+                        errorMessage = 'Phone number must be exactly 10 digits.';
+                        isValid = false;
+                    }
+                    break;
+                    
+              
+                  
+            }
+            
+            if (isValid) {
+                field.classList.remove('error');
+                if (errorElement) errorElement.textContent = '';
+            } else {
+                field.classList.add('error');
+                if (errorElement) errorElement.textContent = errorMessage;
+            }
+            
+            return isValid;
+        }
+        
+        function clearError(fieldName) {
+            const field = document.getElementById(fieldName);
+            const errorElement = document.getElementById(`${fieldName}-error`);
+            if (field && field.value.trim() !== '') {
+                field.classList.remove('error');
+                if (errorElement) errorElement.textContent = '';
+            }
+        }
+        
+        function clearAllErrors() {
+            const allFields = document.querySelectorAll('input, select, textarea');
+            allFields.forEach(field => field.classList.remove('error'));
+            
+            const allErrors = document.querySelectorAll('.error-message');
+            allErrors.forEach(error => error.textContent = '');
+        }
+        
+        function validateForm() {
+            let isFormValid = true;
+            
+            // Validate all fields
+            fields.forEach(fieldId => {
+                if (!validateField(fieldId)) {
+                    isFormValid = false;
+                }
+            });
+            
+            // Validate gender
+            if (!validateField('gender')) {
+                isFormValid = false;
+            }
+            
+            // Validate hobbies
+            if (!validateField('hobbies')) {
+                isFormValid = false;
+            }
+            
+            return isFormValid;
+        }
+        
+        function displaySuccessData() {
+            const formData = new FormData(form);
+            const displayDataDiv = document.getElementById('displayData');
+            
+            let dataHTML = '';
+            
+            // Get form data
+            const fullname = document.getElementById('fullname').value;
+            const studentid = document.getElementById('studentid').value;
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const phone = document.getElementById('phone').value;
+            const dob = document.getElementById('dob').value;
+            const age = document.getElementById('age').value;
+            const gender = document.querySelector('input[name="gender"]:checked')?.value;
+            const course = document.getElementById('course').value;
+            const address = document.getElementById('address').value;
+            
+            // Get selected hobbies
+            const selectedHobbies = Array.from(document.querySelectorAll('input[name="hobbies"]:checked'))
+                .map(hobby => hobby.value);
+            
+            dataHTML += `<div class="data-item"><span class="data-label">Full Name:</span> ${fullname}</div>`;
+            dataHTML += `<div class="data-item"><span class="data-label">Student ID:</span> ${studentid}</div>`;
+            dataHTML += `<div class="data-item"><span class="data-label">Email:</span> ${email}</div>`;
+            dataHTML += `<div class="data-item"><span class="data-label">Username:</span> ${username}</div>`;
+            dataHTML += `<div class="data-item"><span class="data-label">Phone:</span> ${phone}</div>`;
+            dataHTML += `<div class="data-item"><span class="data-label">Date of Birth:</span> ${dob}</div>`;
+            dataHTML += `<div class="data-item"><span class="data-label">Age:</span> ${age}</div>`;
+            dataHTML += `<div class="data-item"><span class="data-label">Gender:</span> ${gender}</div>`;
+            dataHTML += `<div class="data-item"><span class="data-label">Course:</span> ${course}</div>`;
+            dataHTML += `<div class="data-item"><span class="data-label">Hobbies:</span> ${selectedHobbies.join(', ')}</div>`;
+            dataHTML += `<div class="data-item"><span class="data-label">Address:</span> ${address}</div>`;
+            
+            displayDataDiv.innerHTML = dataHTML;
+            successData.style.display = 'block';
+            
+            // Scroll to success data
+            successData.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Test functions for regex patterns
+        function testRegex() {
+            console.log("Testing regex patterns:");
+            console.log("Name regex test 'John Doe':", nameRegex.test('John Doe'));
+            console.log("Username regex test 'user123':", usernameRegex.test('user123'));
+            console.log("Password regex test 'Test@123':", passwordRegex.test('Test@123'));
+            console.log("Phone regex test '9876543210':", phoneRegex.test('9876543210'));
+        }
+        
+        // Call test function on page load
+        testRegex();
+    </script>
+</body>
+</html>

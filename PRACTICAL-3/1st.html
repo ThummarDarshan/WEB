@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="validation.css">
+</head>
+
+<body>
+    <div class="container">
+        <form action="post">
+            <div class="heading align flex">Login Page </div>
+
+            <div class="flex align">
+                <label for="fname">First Name </label>
+            </div>
+            <div class="flex ">
+                <div class="align"></div> <input class="input" id="fname" type="text" placeholder="Enter Your First Name">
+                <span id="s1" class="s" ></span>
+            </div>
+            
+
+            <div class="flex align">
+                <label for="stuid">Student ID </label>
+            </div>
+            <div class="flex ">
+                <div class="align"> </div> <input class="input" id="stuid" type="text"
+                    placeholder="Enter Your  Student ID">
+                <span id="s5" class="s" ></span>
+            </div>
+
+            <div class="flex align">
+                <label for="email"> Email </label>
+            </div>
+            <div class="flex ">
+                <div class="align"></div> <input class="input" id="email" type="email"
+                    placeholder="Enter Your CE Email ID With @charusat.edu.in">
+                <span id="s6" class="s" ></span>
+            </div>
+            
+            <div class="flex align">
+                <label for="pass"> Password </label>
+            </div>
+            <div class="flex ">
+                <div class="align"></div> <input class="input" id="pass" type="password"
+                    placeholder="Enter Your Password">
+                <span id="s7" class="s" ></span>
+            </div>
+            <div class="flex align">
+                <label for="cpass"> Conform Password </label>
+            </div>
+            <div class="flex ">
+                <div class="align"></div> <input class="input" id="cpass" type="password"
+                    placeholder="Enter Again Password">
+                <span id="s8" class="s" ></span>
+            </div>
+
+            <div class="flex align">
+                <label for="number"> Phone Number </label>
+            </div>
+            <div class="flex ">
+                <div class="align"></div> <input class="input" id="number" type="tel"
+                    placeholder="Enter Your Phone Number">
+                <span id="s9" class="s" ></span>
+            </div>
+
+            <div class="button">
+                <input type="button" value="Validate" class="btn" id="btn">
+                
+            </div>
+           
+            <!-- <div class="flex align box" id="result"> -->
+                
+                
+            </div>
+            
+        </form>
+    </div>
+    <script src="validation.js"></script>
+</body>
+
+</html>
