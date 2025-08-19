@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What is the DOM?",
+    "answer": "The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content."
+  },
+  {
+    "question": "How are events handled in JavaScript?",
+    "answer": "Events are handled by attaching event listeners to DOM elements. When an event occurs (like a click or keypress), the listener function is executed."
+  },
+  {
+    "question": "What are CSS transitions?",
+    "answer": "CSS transitions allow you to change property values smoothly, over a given duration."
+  }
+]

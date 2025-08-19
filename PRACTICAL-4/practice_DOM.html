@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Portal</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f2f2f2, #e6f7ff);
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #007acc;
+      margin-bottom: 40px;
+    }
+
+    .faq {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .question {
+      cursor: pointer;
+      background-color: #e0f7ff;
+      padding: 15px 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .question:hover {
+      background-color: #cceeff;
+    }
+
+    .answer {
+      padding: 10px 20px;
+      margin: 5px 0 15px 0;
+      background-color: #f9f9f9;
+      border-left: 4px solid #007acc;
+      border-radius: 4px;
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    button {
+      margin: 20px auto;
+      display: block;
+      padding: 12px 20px;
+      background: linear-gradient(45deg, #007acc, #00c3ff);
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 122, 204, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #005f99, #00aaff);
+      transform: translateY(-2px);
+    }
+
+    .notification {
+      position: fixed;
+      top: 30px; /* Updated: appear near top */
+      left: 50%;
+      transform: translateX(-50%); /* Only center horizontally */
+      background: linear-gradient(to right, #00c3ff, #007acc);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 300px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .notification .close-btn {
+      margin-left: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .notification .close-btn:hover {
+      color: #ddd;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Dynamic Portal</h1>
+
+  <div class="faq">
+    <div class="question" onclick="toggleAnswer(this)">What is DOM?</div>
+    <div class="answer">DOM stands for Document Object Model.</div>
+
+    <div class="question" onclick="toggleAnswer(this)">Why use events?</div>
+    <div class="answer">Events let the page respond to user actions.</div>
+  </div>
+
+  <button onclick="showNotification()">Show Notification</button>
+
+  <script>
+    function toggleAnswer(element) {
+      let answer = element.nextElementSibling;
+      answer.style.display = answer.style.display === "block" ? "none" : "block";
+    }
+
+    function showNotification() {
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.innerHTML = `
+        <span>This is a sexy notification! 😎</span>
+        <span class="close-btn" onclick="this.parentElement.remove()">×</span>
+      `;
+      document.body.appendChild(notification);
+    }
+  </script>
+</body>
+
+</html>
